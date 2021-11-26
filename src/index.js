@@ -25,7 +25,7 @@ const refs = {
     loadBtn: document.querySelector('.load-more'),
 };
 
-const clearGallery = refs.gallery.innerHTML = '';
+// const clearGallery = refs.gallery.innerHTML = '';
 let element ='';
 hideBtn(refs.loadBtn);
 console.log(hideBtn(refs.loadBtn))
@@ -62,6 +62,7 @@ refs.loadBtn.addEventListener('click', onLoad);
 
 
 function onSearch(event) {
+  clearGallery();
     event.preventDefault();
     element = event.currentTarget.searchQuery.value;
     console.log(element);
@@ -73,12 +74,12 @@ function onSearch(event) {
       const totalImages = images.data.totalHits;
   
       if (imagesArray.length === 0) {
-        clearGallery;
+        clearGallery()
         return Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again ',
         );
       }
-      clearGallery;
+      clearGallery()
       //renderGallery(imagesArr);
       refs.gallery.insertAdjacentHTML('beforeend', card(imagesArray));
       new SimpleLightbox('.gallery a', {
@@ -117,3 +118,9 @@ function onSearch(event) {
         hideBtn(refs.loadBtn);
       });
   }
+
+
+
+  function clearGallery () {
+    refs.gallery.innerHTML = '';
+  };
